@@ -5,16 +5,19 @@
 
 Path::Path(TerrainMap& m, std::string name_in, Point start_in, Point finish_in) : map(m), name(name_in), start(start_in), finish(finish_in) {};
 
+
+
 void Path::printStats() const {
+
     bool land = false;
     bool water = false;
     double length = 0.0;
     double alt = 0.0;
     int max_alt = map.alt(path[0]);
 
-    for (int i=1; i<path.size(); ++i) {
+    for (int i = 1; i < path.size(); ++i) {
         Point u = path[i];
-        Point u_prev = path[i-1];
+        Point u_prev = path[i - 1];
         if (i < path.size() - 1 && map.alt(u) > 0) land = true;
         if (map.alt(u) < 0) water = true;
         length += (u - u_prev).length();
